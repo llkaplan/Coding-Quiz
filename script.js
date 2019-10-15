@@ -7,7 +7,6 @@ window.onload = function () {
     var questionPage = document.getElementById('quiz');
     var nextButton = document.getElementById('next');
     var iter = 0;
-    var curAns = '';
 
     // storing all my questions
 
@@ -45,29 +44,53 @@ window.onload = function () {
             answerButton.classList.add("btn", 'btnlight', "answerBtn");
             questionPage.appendChild(answerButton);
             questionPage.insertBefore(answerButton, null);
-            questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null); 
+            questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null);
         };
 
         answerButton.addEventListener("click", function () {
-           curAns = answerButton; 
+            curAns = answerButton;
         });
 
         nextButton.addEventListener("click", function () {
-            if (curAns = myQuestions[iter].correctAnswer) {  
+        
+            
+            if (curAns = myQuestions[iter].correctAnswer) {
                 score++;
                 console.log(score);
             }
             if (iter < (myQuestions.length - 1)) {
                 iter++;
-                console.log(iter);
+
+                var questionText = document.createElement("h3");
+                questionText.innerHTML = myQuestions[iter].question;
+                questionPage.appendChild(questionText);
+                questionPage.insertBefore(questionText, null);
+                questionPage.insertBefore(questionText, questionPage.childNodes[0] || null);
+
+            for (i = 0; i < myQuestions[iter].answers.length; i++) {
+                var answerButton = document.createElement("button");
+                answerButton.innerHTML = myQuestions[iter].answers[i];
+                answerButton.classList.add("btn", 'btnlight', "answerBtn");
+                questionPage.appendChild(answerButton);
+                questionPage.insertBefore(answerButton, null);
+                questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null);
+            };
+
+            answerButton.addEventListener("click", function () {
+                curAns = answerButton;
+            });
+
+
 
             }
-            else{        
+            else {
                 firstPage.style.display = "none";
                 questionPage.style.display = "none";
                 lastPage.style.display = "block";
-             }
+            }
         })
+
+
     });
 
 }

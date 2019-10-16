@@ -6,6 +6,7 @@ window.onload = function () {
     var firstPage = document.getElementById('quizContent');
     var questionPage = document.getElementById('quiz');
     var nextButton = document.getElementById('next');
+    var questionSpot = document.getElementById('questionDiv');
     var iter = 0;
 
     // storing all my questions
@@ -28,6 +29,9 @@ window.onload = function () {
         }
     ];
 
+    //functions
+
+
 
     startBtn.addEventListener("click", function () {
         firstPage.style.display = "none";
@@ -42,15 +46,17 @@ window.onload = function () {
             var answerButton = document.createElement("button");
             answerButton.innerHTML = myQuestions[iter].answers[i];
             answerButton.classList.add("btn", 'btnlight', "answerBtn");
-            questionPage.appendChild(answerButton);
-            questionPage.insertBefore(answerButton, null);
-            questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null);
+            questionSpot.appendChild(answerButton);
+            /*  questionPage.insertBefore(answerButton, null);
+              questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null); */
         };
 
         nextButton.addEventListener("click", function () {
-            questionText.remove()
-            var el = document.getElementByClassName('btnlight');
-            el.remove()
+
+            while (questionSpot.firstChild) {
+                questionSpot.removeChild(questionSpot.firstChild);
+            };
+
         });
 
         answerButton.addEventListener("click", function () {
@@ -58,7 +64,6 @@ window.onload = function () {
         });
 
         nextButton.addEventListener("click", function () {
-
 
             if (curAns = myQuestions[iter].correctAnswer) {
                 score++;
@@ -77,9 +82,9 @@ window.onload = function () {
                     var answerButton = document.createElement("button");
                     answerButton.innerHTML = myQuestions[iter].answers[i];
                     answerButton.classList.add("btn", 'btnlight', "answerBtn");
-                    questionPage.appendChild(answerButton);
-                    questionPage.insertBefore(answerButton, null);
-                    questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null);
+                    questionSpot.appendChild(answerButton);
+                    /*     questionPage.insertBefore(answerButton, null);
+                         questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null); */
                 };
 
                 answerButton.addEventListener("click", function () {

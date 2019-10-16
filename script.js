@@ -47,13 +47,19 @@ window.onload = function () {
             questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null);
         };
 
+        nextButton.addEventListener("click", function () {
+            questionText.remove()
+            var el = document.getElementByClassName('btnlight');
+            el.remove()
+        });
+
         answerButton.addEventListener("click", function () {
             curAns = answerButton;
         });
 
         nextButton.addEventListener("click", function () {
-        
-            
+
+
             if (curAns = myQuestions[iter].correctAnswer) {
                 score++;
                 console.log(score);
@@ -67,20 +73,18 @@ window.onload = function () {
                 questionPage.insertBefore(questionText, null);
                 questionPage.insertBefore(questionText, questionPage.childNodes[0] || null);
 
-            for (i = 0; i < myQuestions[iter].answers.length; i++) {
-                var answerButton = document.createElement("button");
-                answerButton.innerHTML = myQuestions[iter].answers[i];
-                answerButton.classList.add("btn", 'btnlight', "answerBtn");
-                questionPage.appendChild(answerButton);
-                questionPage.insertBefore(answerButton, null);
-                questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null);
-            };
+                for (i = 0; i < myQuestions[iter].answers.length; i++) {
+                    var answerButton = document.createElement("button");
+                    answerButton.innerHTML = myQuestions[iter].answers[i];
+                    answerButton.classList.add("btn", 'btnlight', "answerBtn");
+                    questionPage.appendChild(answerButton);
+                    questionPage.insertBefore(answerButton, null);
+                    questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null);
+                };
 
-            answerButton.addEventListener("click", function () {
-                curAns = answerButton;
-            });
-
-
+                answerButton.addEventListener("click", function () {
+                    curAns = answerButton;
+                });
 
             }
             else {

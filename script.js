@@ -7,6 +7,7 @@ window.onload = function () {
     var questionPage = document.getElementById('quiz');
     var nextButton = document.getElementById('next');
     var questionSpot = document.getElementById('questionDiv');
+    var headerSpot = document.getElementById('headerArea');
     var iter = 0;
 
     // storing all my questions
@@ -37,27 +38,16 @@ window.onload = function () {
         firstPage.style.display = "none";
         questionPage.style.display = "block";
         var questionText = document.createElement("h3");
+        questionText.classList.add("header" + iter);
         questionText.innerHTML = myQuestions[iter].question;
-        questionPage.appendChild(questionText);
-        questionPage.insertBefore(questionText, null);
-        questionPage.insertBefore(questionText, questionPage.childNodes[0] || null);
+        headerSpot.appendChild(questionText);
 
         for (i = 0; i < myQuestions[iter].answers.length; i++) {
             var answerButton = document.createElement("button");
             answerButton.innerHTML = myQuestions[iter].answers[i];
             answerButton.classList.add("btn", 'btnlight', "answerBtn");
             questionSpot.appendChild(answerButton);
-            /*  questionPage.insertBefore(answerButton, null);
-              questionPage.insertBefore(answerButton, questionPage.childNodes[1] || null); */
         };
-
-        nextButton.addEventListener("click", function () {
-
-            while (questionSpot.firstChild) {
-                questionSpot.removeChild(questionSpot.firstChild);
-            };
-
-        });
 
         answerButton.addEventListener("click", function () {
             curAns = answerButton;
@@ -69,14 +59,18 @@ window.onload = function () {
                 score++;
                 console.log(score);
             }
+
+            while (questionSpot.firstChild) {
+                questionSpot.removeChild(questionSpot.firstChild);
+            };
+            
+
             if (iter < (myQuestions.length - 1)) {
                 iter++;
 
                 var questionText = document.createElement("h3");
                 questionText.innerHTML = myQuestions[iter].question;
-                questionPage.appendChild(questionText);
-                questionPage.insertBefore(questionText, null);
-                questionPage.insertBefore(questionText, questionPage.childNodes[0] || null);
+                headerSpot.appendChild(questionText);
 
                 for (i = 0; i < myQuestions[iter].answers.length; i++) {
                     var answerButton = document.createElement("button");
